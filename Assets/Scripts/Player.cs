@@ -12,21 +12,18 @@ public class Player : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
         input = _playerInput.actions["Move"].ReadValue<Vector2>();
+        //rotacion camara
+        float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
     }
-
     private void FixedUpdate()
     {
         _rigidbody.AddForce(new Vector3(input.x, 0f, input.y) * forceMove);
-    }
-
-    //Metodo para moverse
-    public void Move(InputAction.CallbackContext callbackContext)
-    {
-        
     }
     //Metodo para saltar
     public void Jump(InputAction.CallbackContext callbackContext)

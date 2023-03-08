@@ -12,11 +12,11 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     
     private CharacterController _characterController;
-    private float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    private float _turnSmoothTime = 0.1f;
+    private float _turnSmoothVelocity;
     
-    private Vector3 velocity;
-    private bool isGrounded;
+    private Vector3 _velocity;
+    private bool _isGrounded;
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
         Jump();
         Move();
     }
-    
     private void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -38,7 +37,7 @@ public class Player : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             _characterController.Move(moveDir * (speedMove * Time.deltaTime));
@@ -47,18 +46,18 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
+        _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (_isGrounded && _velocity.y < 0)
         {
-            velocity.y -= 2f;
+            _velocity.y -= 2f;
         }
         
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
+            _velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
         }
         
-        velocity.y += gravity * Time.deltaTime;
-        _characterController.Move(velocity * Time.deltaTime);
+        _velocity.y += gravity * Time.deltaTime;
+        _characterController.Move(_velocity * Time.deltaTime);
     }
 }

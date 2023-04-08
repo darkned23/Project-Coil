@@ -22,16 +22,13 @@ public class EventSystem : MonoBehaviour
     }
     public void ResetScene()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void NextScene()
     {
-        SceneManager.LoadScene(sceneBuildIndex: +1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void ReturnScene()
-    {
-        SceneManager.LoadScene(sceneBuildIndex: -1);
-    }
+   
     public void ExitGame()
     {
         Application.Quit();

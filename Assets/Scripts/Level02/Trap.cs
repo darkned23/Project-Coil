@@ -9,6 +9,8 @@ public class Trap : MonoBehaviour
     public Questions questions;
     public ActiveAnswer activeAnswer;
     public float delay = 3f;
+    
+    public Player.Player player;
     public void FalseAnswear()
     {
         Destroy(trap);
@@ -19,6 +21,8 @@ public class Trap : MonoBehaviour
 
     public void TrueAnswear()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        player.enabled = true;
         Destroy(door);
         questions.quienstionActive.SetActive(false);
         activeAnswer.answerActive.SetActive(false);

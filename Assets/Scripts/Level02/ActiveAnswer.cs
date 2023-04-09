@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActiveAnswer : MonoBehaviour
 {
-    public Player player;
+    public Player.Player player;
     public Questions questions;
     public GameObject answerActive;
     public GameObject[] listAnswer;

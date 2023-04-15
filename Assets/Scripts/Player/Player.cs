@@ -30,16 +30,21 @@ namespace Player
             _characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
         }
-    
+
         private void Update()
         {
-            _mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             Jump();
-            Move();
-            MoveCamera();
         }
+
+        private void FixedUpdate()
+        {
+            Move();
+            MoveCamera();   
+        }
+
         private void Move()
         {
+            _mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;

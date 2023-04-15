@@ -13,6 +13,7 @@ public class ChangeScene : MonoBehaviour
     }
     public void goScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(indexScene);
     }
 }

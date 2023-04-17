@@ -28,7 +28,6 @@ namespace Level02
             Destroy(door);
             questions.quienstionActive.SetActive(false);
             activeAnswer.answerActive.SetActive(false);
-        
         }
 
         IEnumerator LoadNextSceneAfterDelay(float delay)

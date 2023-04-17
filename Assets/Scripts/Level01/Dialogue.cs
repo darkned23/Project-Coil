@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-
 public class Dialogue : MonoBehaviour
 {
 
@@ -12,14 +11,12 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     private int dialogueIndex;
     
-    // Start is called before the first frame update
     void Start()
     {
         textComponent.text = String.Empty;
         StartDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -64,5 +61,4 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    
 }

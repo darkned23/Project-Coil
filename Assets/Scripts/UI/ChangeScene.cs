@@ -14,6 +14,7 @@ public class ChangeScene : MonoBehaviour
     public void goScene()
     {
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene(indexScene);
     }
 }

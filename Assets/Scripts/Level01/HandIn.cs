@@ -5,8 +5,6 @@ using UnityEngine;
 using Random = System.Random;
 using Object = System.Object;
 using TMPro;
-using Unity.VisualScripting;
-
 
 public class HandIn : MonoBehaviour
 {
@@ -26,30 +24,26 @@ public class HandIn : MonoBehaviour
 
     [SerializeField] private GameObject door;
     
-    // Start is called before the first frame update
     void Start()
     {
-        //textComponent.text = String.Empty;
-        //StartDialogue();
-
         Dictionary<String, Object> cube0 = new Dictionary<string, object>();
-        cube0.Add("name", "Violet Cube");
+        cube0.Add("name", "GET UP");
         cube0.Add("handed", false);
 
         Dictionary<String, Object> cube1 = new Dictionary<string, object>();
-        cube1.Add("name", "Blue Cube");
+        cube1.Add("name", "HAVE CLASSES");
         cube1.Add("handed", false);
         
         Dictionary<String, Object> cube2 = new Dictionary<string, object>();
-        cube2.Add("name", "Red Cube");
+        cube2.Add("name", "HAVE SHOWER");
         cube2.Add("handed", false);
         
         Dictionary<String, Object> cube3 = new Dictionary<string, object>();
-        cube3.Add("name", "Green Cube");
+        cube3.Add("name", "BRUSH MY TEETH");
         cube3.Add("handed", false);
         
         Dictionary<String, Object> cube4 = new Dictionary<string, object>();
-        cube4.Add("name", "Yellow Cube");
+        cube4.Add("name", "DO MY HOMEWORK");
         cube4.Add("handed", false);
         
         cubes.Add(cube0);
@@ -88,13 +82,8 @@ public class HandIn : MonoBehaviour
             textComponent.text = String.Empty;
             StartCoroutine(TypeLine());
         }
-        // else
-        // {
-        //     gameObject.SetActive(false);
-        // }
     }
     
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -148,15 +137,15 @@ public class HandIn : MonoBehaviour
         cubeToHand = (String) cubes[index]["name"];
         switch (objectsHanded)
         {
-            case 0: //Debug.Log("Teacher: Please bring me a " + cubeToHand);
+            case 0: 
                 lines = new[] {"Teacher: Please bring me a " + cubeToHand };
                 StartDialogue();
                 break;
-            case 1: //Debug.Log("Teacher: Now please bring me a " + cubeToHand);
+            case 1: 
                 lines = new[] {"Teacher: " + lastObjectHanded + " received, thank you", "Teacher: Now please bring me a " + cubeToHand};
                 StartDialogue();
                 break;
-            case 2: //Debug.Log("Teacher: Lastly, bring me a " + cubeToHand);
+            case 2: 
                 lines = new[] {"Teacher: " + lastObjectHanded + " received, thank you", "Teacher: Lastly, bring me a " + cubeToHand};
                 StartDialogue();
                 break;

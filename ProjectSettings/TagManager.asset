@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Violet Cube
-  - Blue Cube
-  - Red Cube
-  - Green Cube
-  - Yellow Cube
+  - GET UP
+  - HAVE CLASSES
+  - HAVE SHOWER
+  - BRUSH MY TEETH
+  - DO MY HOMEWORK
   layers:
   - Default
   - TransparentFX

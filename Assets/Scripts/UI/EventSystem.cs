@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,16 +6,15 @@ namespace UI
 {
     public class EventSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject panelPause;
+        [SerializeField] private GameObject panelPause, panelGuia;
         private bool _isPanelActive;
-        private float delay = 10f;
+        private float delay = 25f;
 
         [SerializeField] private float sceneActive;
         private void Start()
         {
-            if (sceneActive == 4)
+            if (sceneActive == 3)
             {
-                Debug.Log("1");
                 StartCoroutine(DelayCredits(delay));
             }
         }
@@ -24,6 +22,7 @@ namespace UI
         private void Update()
         {
             PauseInput();
+            PauseInputGuia();
         }
 
         public void ResetScene()
@@ -43,32 +42,44 @@ namespace UI
         }
         private void PauseInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && sceneActive is 1 or 2 && _isPanelActive == false)
             {
                 if (_isPanelActive)
                 {
-                    UnPause();
+                    UnPause(panelPause);
                 }
                 else {
-                    Pause();
+                    Pause(panelPause);
                 }
             }
         }
 
-        public void Pause()
+        private void PauseInputGuia()
+        {
+            if (Input.GetKeyDown(KeyCode.G) && sceneActive is 1 or 2 && _isPanelActive == false)
+            {
+                if (_isPanelActive)
+                {
+                    UnPause(panelGuia);
+                }
+                else {
+                    Pause(panelGuia);
+                }
+            }
+        }
+        public void Pause(GameObject panel)
         {
             Time.timeScale = 0;
             _isPanelActive = true;
-            panelPause.SetActive(_isPanelActive);
+            panel.SetActive(_isPanelActive);
             Cursor.lockState = CursorLockMode.Confined;
-        
         }
 
-        public void UnPause()
+        public void UnPause(GameObject panel)
         {
             Time.timeScale = 1;
             _isPanelActive = false;
-            panelPause.SetActive(_isPanelActive);
+            panel.SetActive(_isPanelActive);
             Cursor.lockState = CursorLockMode.Locked;
         }
 

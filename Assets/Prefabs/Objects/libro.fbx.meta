@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: hoja2
+    second: {fileID: 2100000, guid: b832c112c94d52a45b15e13af33f80b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: pasta_
     second: {fileID: 2100000, guid: c468ddb1242dad14da25e452851be9d6, type: 2}
   materials:

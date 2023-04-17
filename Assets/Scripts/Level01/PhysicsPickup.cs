@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsPickup : MonoBehaviour
@@ -17,7 +14,6 @@ public class PhysicsPickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-
             if (CurrentObject)
             {
                 CurrentObject.useGravity = true;

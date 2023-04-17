@@ -9,7 +9,6 @@ TagManager:
   - Red Cube
   - Green Cube
   - Yellow Cube
-  - Orange Cube
   layers:
   - Default
   - TransparentFX

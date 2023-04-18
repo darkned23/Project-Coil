@@ -11,6 +11,9 @@ namespace UI
         private float delay = 25f;
 
         [SerializeField] private float sceneActive;
+
+        [SerializeField] private GameObject panelCorrect;
+        [SerializeField] private float delayCorrect;
         private void Start()
         {
             if (sceneActive == 3)
@@ -87,6 +90,17 @@ namespace UI
         {
             yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(0);
+        }
+
+        public void ActiveCorrect()
+        {
+            panelCorrect.SetActive(true);
+            StartCoroutine(DelayCorrect(delayCorrect, panelCorrect));
+        }
+        private IEnumerator DelayCorrect(float delay, GameObject panel)
+        {
+            yield return new WaitForSeconds(delay);
+            panel.SetActive(false);
         }
     }
 }

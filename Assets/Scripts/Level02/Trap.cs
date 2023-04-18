@@ -11,10 +11,12 @@ namespace Level02
         public Questions questions;
         public ActiveAnswer activeAnswer;
         public float delay = 3f;
+        [SerializeField] private AudioSource soundClick;
     
         public Player.Player player;
         public void FalseAnswear()
         {
+            soundClick.Play();
             Destroy(trap);
             questions.quienstionActive.SetActive(false);
             activeAnswer.answerActive.SetActive(false);
@@ -23,6 +25,7 @@ namespace Level02
 
         public void TrueAnswear()
         {
+            soundClick.Play();
             Cursor.lockState = CursorLockMode.Locked;
             player.enabled = true;
             Destroy(door);

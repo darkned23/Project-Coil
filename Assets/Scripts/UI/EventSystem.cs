@@ -14,11 +14,13 @@ namespace UI
 
         [SerializeField] private GameObject panelCorrect;
         [SerializeField] private float delayCorrect;
+
+        [SerializeField] private AudioSource soundClick;
         private void Start()
         {
             if (sceneActive == 3)
             {
-                StartCoroutine(DelayCredits(delay));
+                StartCoroutine(DelayScene(delay, 0));
             }
         }
 
@@ -31,15 +33,16 @@ namespace UI
         public void ResetScene()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(DelayScene(0.5f, SceneManager.GetActiveScene().buildIndex));
         }
         public void NextScene()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(DelayScene(0.5f, SceneManager.GetActiveScene().buildIndex + 1));
         }
         public void ExitGame()
         {
+            PlaySoundClick(soundClick);
             Application.Quit();
             Debug.Log("Saliendo...");
         }
@@ -49,9 +52,11 @@ namespace UI
             {
                 if (_isPanelActive)
                 {
+                    PlaySoundClick(soundClick);
                     UnPause(panelPause);
                 }
                 else {
+                    PlaySoundClick(soundClick);
                     Pause(panelPause);
                 }
             }
@@ -63,9 +68,11 @@ namespace UI
             {
                 if (_isPanelActive)
                 {
+                    PlaySoundClick(soundClick);
                     UnPause(panelGuia);
                 }
                 else {
+                    PlaySoundClick(soundClick);
                     Pause(panelGuia);
                 }
             }
@@ -86,10 +93,11 @@ namespace UI
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        private IEnumerator DelayCredits(float delay)
+        private IEnumerator DelayScene(float delay, int nextScene)
         {
+            PlaySoundClick(soundClick);
             yield return new WaitForSeconds(delay);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(nextScene);
         }
 
         public void ActiveCorrect()
@@ -99,8 +107,14 @@ namespace UI
         }
         private IEnumerator DelayCorrect(float delay, GameObject panel)
         {
+            PlaySoundClick(soundClick);
             yield return new WaitForSeconds(delay);
             panel.SetActive(false);
+        }
+
+        public void PlaySoundClick(AudioSource sound)
+        {
+            sound.Play();
         }
     }
 }

@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    [SerializeField] private byte indexScene;
+    [SerializeField] private int indexScene;
+    [SerializeField] private AudioSource soundClick;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -15,6 +17,13 @@ public class ChangeScene : MonoBehaviour
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Confined;
-        SceneManager.LoadScene(indexScene);
+        StartCoroutine(DelayScene(0.5f, indexScene, soundClick));
+    }
+
+    private IEnumerator DelayScene(float delay, int nextScene, AudioSource click)
+    {
+        click.Play();
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(nextScene);
     }
 }

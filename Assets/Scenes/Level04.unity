@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 384892762}
   - component: {fileID: 384892761}
   m_Layer: 5
-  m_Name: CreditsVeracruz (1)
+  m_Name: Thanks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "ESTUDIANTES:\nSergio Antonio Hern\xE1ndez\nAxel Zaid Xotla Ruiz\n\nDOCENTE:"
+  m_text: "ESTUDIANTES:\nSergio Antonio Hern\xE1ndez\nAxel Zaid Xotla Ruiz"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e12dcd63d505dbd41955e034a6a024b9, type: 2}
   m_sharedMaterial: {fileID: 5550516380618980033, guid: e12dcd63d505dbd41955e034a6a024b9, type: 2}
